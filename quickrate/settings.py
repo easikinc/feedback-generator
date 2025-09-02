@@ -23,11 +23,8 @@ DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '.railway.app',
-    'reviewbud.co',
-    'www.reviewbud.co',
-    '.reviewbud.co'
-    'quickratedb.railway.internal',
+    '.vercel.app'
+    
 ]
 
 # Application definition
@@ -151,7 +148,7 @@ else:
             'USER': 'quickrateuser',
             'PASSWORD': '011936',
             'HOST': 'localhost',
-            'PORT': '5432',
+            'PORT': '8080',
         }
     }
 

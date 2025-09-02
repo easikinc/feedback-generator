@@ -18,7 +18,7 @@ if not OPENAI_API_KEY:
     import logging
     logging.warning("OPENAI_API_KEY is not configured. AI review generation will use fallback templates.")
 
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 
 # Add this near your other security settings
 CSRF_TRUSTED_ORIGINS = [
-    'https://quickrate.up.railway.app',
+    'feedback-generator-jade.vercel.app',
     'http://127.0.0.1:8000',
     'http://localhost:8000',
 ]
@@ -122,35 +122,35 @@ TEMPLATES = [
 ]
 
 # Database Configuration
-DATABASE_URL = os.environ.get('DATABASE_URL')
+# DATABASE_URL = os.environ.get('DATABASE_URL')
 
-if DATABASE_URL:
-    # Production database (Railway) - parse DATABASE_URL manually
-    import urllib.parse as urlparse
+# if DATABASE_URL:
+#     # Production database (Railway) - parse DATABASE_URL manually
+#     import urllib.parse as urlparse
     
-    url = urlparse.urlparse(DATABASE_URL)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': url.path[1:],  # Remove leading slash
-            'USER': url.username,
-            'PASSWORD': url.password,
-            'HOST': url.hostname,
-            'PORT': url.port,
-        }
-    }
-else:
-    # Local development database
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'quickratedb',
-            'USER': 'quickrateuser',
-            'PASSWORD': '011936',
-            'HOST': 'localhost',
-            'PORT': '8080',
-        }
-    }
+#     url = urlparse.urlparse(DATABASE_URL)
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': url.path[1:],  # Remove leading slash
+#             'USER': url.username,
+#             'PASSWORD': url.password,
+#             'HOST': url.hostname,
+#             'PORT': url.port,
+#         }
+#     }
+# else:
+#     # Local development database
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'quickratedb',
+#             'USER': 'quickrateuser',
+#             'PASSWORD': '011936',
+#             'HOST': 'localhost',
+#             'PORT': '8080',
+#         }
+#     }
 
 
 # Custom User Model (IMPORTANT!)

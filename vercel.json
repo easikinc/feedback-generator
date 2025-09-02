@@ -2,7 +2,8 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "api/wsgi.py"
+      "dest": "quickrate/wsgi.py"
+      
     }
   ]
 }

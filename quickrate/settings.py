@@ -18,17 +18,14 @@ if not OPENAI_API_KEY:
     import logging
     logging.warning("OPENAI_API_KEY is not configured. AI review generation will use fallback templates.")
 
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+DEBUG = os.environ.get("DEBUG") != "False"
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '.railway.app',
-    'reviewbud.co',
-    'www.reviewbud.co',
-    '.reviewbud.co'
-    'quickratedb.railway.internal',
-]
+    ".vercel.app",
+    ".now.sh"
+    ]
 
 # Application definition
 SITE_ID = 1
@@ -42,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'businesses',
     'reviews',
-
+    "whitenoise.runserver_nostatic"
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -190,7 +187,7 @@ LOGOUT_REDIRECT_URL = '/'
 GOOGLE_PLACES_API_KEY = config('GOOGLE_PLACES_API_KEY', default='AIzaSyBFSrkWWpUl3sqktRtqBEOFNE6lxhoWkdU')
 
 # Static files for production
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles", "static")
 
 # Security settings for production
 if not DEBUG:
